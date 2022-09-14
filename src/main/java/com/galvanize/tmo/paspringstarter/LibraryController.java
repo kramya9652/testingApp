@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,14 +45,18 @@ public class LibraryController {
         }
     }
     @PostMapping("/api/books")
-    private Books add(@RequestBody Books books) {
+    private ResponseEntity<Books> add(@RequestBody Books books) {
+
+
+
         try {
             books.setId(++autoincrement);
             this.booksList.add(books);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return books;
+        ResponseEntity<Books> book = new ResponseEntity<>(books,HttpStatus.CREATED);
+        return book;
     }
 
     private void update(@RequestBody Books books) {
@@ -64,9 +69,10 @@ public class LibraryController {
     }
 
     @DeleteMapping("/api/books")
-    @ResponseStatus(value=HttpStatus.NO_CONTENT)
-    public void delete() {
+    public ResponseEntity<List<Books>> delete() {
         this.booksList.clear();
+        ResponseEntity<List<Books>> book = new ResponseEntity<List<Books>>(booksList,HttpStatus.NO_CONTENT);
+        return book;
 
     }
 

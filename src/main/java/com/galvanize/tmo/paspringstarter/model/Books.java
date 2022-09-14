@@ -2,11 +2,15 @@ package com.galvanize.tmo.paspringstarter.model;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.boot.jackson.JsonComponent;
 
 
+@JsonComponent
 public class Books implements Serializable {
 
+	public Books() {
+
+	}
 	public Books(Integer id, String author, String title, Integer yearPublished) {
 		super();
 		this.id = id;
@@ -18,7 +22,7 @@ public class Books implements Serializable {
 	private String  author;
 	private String  title;
 	private Integer yearPublished;
-	
+
 	public Integer getId() {
 		return id;
 	}
