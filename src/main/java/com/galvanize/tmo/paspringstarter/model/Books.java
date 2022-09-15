@@ -5,7 +5,6 @@ import java.io.Serializable;
 import org.springframework.boot.jackson.JsonComponent;
 
 
-@JsonComponent
 public class Books implements Serializable {
 
 	public Books() {
@@ -47,4 +46,5 @@ public class Books implements Serializable {
 	public void setYearPublished(Integer yearPublished) {
 		this.yearPublished = yearPublished;
 	}
+
 }
